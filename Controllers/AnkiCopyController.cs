@@ -38,6 +38,7 @@ namespace AnkiCopyBase.Controllers
             if (choosen == 0)
                 return;
 
+            //decks indexing starts from 0, valid choosen values start from 1
             Learn.ShowDeck(decks[choosen - 1].Shuffle());
         }
 
@@ -46,31 +47,31 @@ namespace AnkiCopyBase.Controllers
             int choosen = 0;
             do
             {
-                choosen = UserLogin.LoginOrRegister();
+                choosen = LoginOrRegister.Entry();
                 UserData user;
 
                 if (choosen == 1)
                 {
-                    user = UserLogin.Register(Valid.usernameDescription, Valid.passwordDescription);
+                    user = LoginOrRegister.Register(Valid.usernameDescription, Valid.passwordDescription);
 
                     while (!UserManager.TryRegister(user))
                     {
-                        if (!UserLogin.AskRetry())
+                        if (!LoginOrRegister.AskRetry())
                             break;
 
-                        user = UserLogin.Register(Valid.usernameDescription, Valid.passwordDescription);
+                        user = LoginOrRegister.Register(Valid.usernameDescription, Valid.passwordDescription);
                     }
                 }
                 else if (choosen == 2)
                 {
-                    user = UserLogin.Login(Valid.usernameDescription, Valid.passwordDescription);
+                    user = LoginOrRegister.Login(Valid.usernameDescription, Valid.passwordDescription);
 
                     while (!UserManager.TryLogin(user))
                     {
-                        if (!UserLogin.AskRetry())
+                        if (!LoginOrRegister.AskRetry())
                             break;
 
-                        user = UserLogin.Login(Valid.usernameDescription, Valid.passwordDescription);
+                        user = LoginOrRegister.Login(Valid.usernameDescription, Valid.passwordDescription);
                     }
                 }
                 else
@@ -88,15 +89,18 @@ namespace AnkiCopyBase.Controllers
             if (!DeckCreation.Continue())
                 return;
 
-            Deck deck = new Deck(DeckCreation.DeckName());
+            Deck? deck = null;
+            while (deck == null)
+            {
+                deck = Deck.TryCreateDeck(DeckCreation.DeckName(Valid.decknameDescription));
+            }
 
             do
             {
-                deck.AddCard(DeckCreation.CardCreation());
+                deck.Cards.Add(DeckCreation.CardCreation());
             } while (DeckCreation.ContinueDeckCreation());
 
-            while (!UserManager.SaveDeck(deck))
-                deck.Name = DeckCreation.DeckName();
+            UserManager.SaveDeck(deck);
         }
     }
 }

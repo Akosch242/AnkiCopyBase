@@ -13,20 +13,20 @@ namespace AnkiCopyBase.Views
             return view.BuildMenu() == 1 ? true : false;
         }
 
-        public static string DeckName()
+        public static string? DeckName(string decknameRules)
         {
-            string? temp;
             ViewBuilder view = new ViewBuilder();
 
-            while (true)
-            {
-                view.AddText($"Deckname: ");
-                view.BuildText();
-                temp = view.GetText();
-                if (!string.IsNullOrEmpty(temp))
+            //while (true)
+            //{
+            view.ClearFull();
+            view.AddText($"Deckname{decknameRules}: ");
+            view.BuildText();
+            return view.GetText();
+                /*if (!string.IsNullOrEmpty(temp))
                     return temp;
-                view.ClearText();
-            }
+                view.ClearText();*/
+            //}
         }
 
         public static Card CardCreation()

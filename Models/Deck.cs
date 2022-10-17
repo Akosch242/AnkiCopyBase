@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Diagnostics.CodeAnalysis;
 
 namespace AnkiCopyBase.Models
 {
@@ -21,15 +22,9 @@ namespace AnkiCopyBase.Models
             Cards = new List<Card>();
         }
 
-        public void AddCard(Card card)
+        public static Deck? TryCreateDeck(string? name)
         {
-            if (Cards != null)
-                Cards.Add(card);
-        }
-
-        public IEnumerator<Card> GetEnumerator()
-        {
-            return ((IEnumerable<Card>)Cards).GetEnumerator();
+            return Valid.DeckName(name) ? new Deck(name) : null;
         }
 
         public Deck Shuffle()
@@ -53,6 +48,11 @@ namespace AnkiCopyBase.Models
             Cards = cards.ToList();
 
             return this;
+        }
+
+        public IEnumerator<Card> GetEnumerator()
+        {
+            return ((IEnumerable<Card>)Cards).GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()

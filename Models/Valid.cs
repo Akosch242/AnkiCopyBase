@@ -1,11 +1,13 @@
-﻿namespace AnkiCopyBase.Models
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace AnkiCopyBase.Models
 {
     public static class Valid
     {
         //Update string when changing conditions
         public static readonly string usernameDescription =
             "(Not null or empty, length between 4 and 16, consists of letters or digits!)";
-        public static bool Username(string? name)
+        public static bool Username([NotNullWhen(true)] string? name)
         {
             if (string.IsNullOrEmpty(name))
                 return false;
@@ -22,7 +24,7 @@
         //Update string when changing conditions
         public static readonly string passwordDescription =
             "(Not null or empty, longer than 4!)";
-        public static bool Password(string? password)
+        public static bool Password([NotNullWhen(true)] string? password)
         {
             if (string.IsNullOrEmpty(password))
                 return false;
@@ -46,8 +48,8 @@
 
         //Update string when changing conditions
         public static readonly string decknameDescription =
-            "(Not null or empty, length should be between 4 and 16, can only contain letters, digits and spaces!)";
-        public static bool DeckName(string? name)
+            "(Not null or empty, length should be between 4 and 16, letters, digits and spaces!)";
+        public static bool DeckName([NotNullWhen(true)] string? name)
         {
             if (string.IsNullOrEmpty(name))
                 return false;

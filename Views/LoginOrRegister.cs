@@ -2,9 +2,9 @@
 
 namespace AnkiCopyBase.Views
 {
-    public static class UserLogin
+    public static class LoginOrRegister
     {
-        public static int LoginOrRegister()
+        public static int Entry()
         {
             ViewBuilder view = new ViewBuilder();
 
