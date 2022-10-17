@@ -1,5 +1,4 @@
-﻿using AnkiCopyBase.Models;
-using System.Text.Json;
+﻿using System.Text.Json;
 
 namespace AnkiCopyBase.Models
 {
@@ -41,7 +40,7 @@ namespace AnkiCopyBase.Models
             if (!Valid.User(user))
                 return false;
 
-            if(!ExistsInFile(user))
+            if (!ExistsInFile(user))
             {
                 File.AppendAllText(UserDataFile, $"{user.Name};{user.Password}{Environment.NewLine}");
                 Directory.CreateDirectory($@".\{user.Name}");

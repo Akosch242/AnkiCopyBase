@@ -23,7 +23,7 @@ namespace AnkiCopyBase.Models
 
         public void AddCard(Card card)
         {
-            if(Cards != null)
+            if (Cards != null)
                 Cards.Add(card);
         }
 

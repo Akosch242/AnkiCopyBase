@@ -10,22 +10,22 @@ namespace AnkiCopyBase.Controllers
             if (!LoginProcess())
                 return;
 
-            while(true)
+            while (true)
             {
-                switch(Menu.ShowMain(UserManager.GetName()))
+                switch (Menu.ShowMain(UserManager.GetName()))
                 {
-                case 1:
-                    DeckCreationProcess();
-                    break;
-                case 2:
-                    TrainingProcess();
-                    break;
-                case 3:
-                    if (!LoginProcess())
+                    case 1:
+                        DeckCreationProcess();
+                        break;
+                    case 2:
+                        TrainingProcess();
+                        break;
+                    case 3:
+                        if (!LoginProcess())
+                            return;
+                        break;
+                    default:
                         return;
-                    break;
-                default:
-                    return;
                 }
             }
         }

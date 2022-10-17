@@ -1,6 +1,4 @@
 ﻿using AnkiCopyBase.Controllers;
-using AnkiCopyBase.Models;
-using System.Text.Json;
 
 namespace AnkiCopyBase
 {

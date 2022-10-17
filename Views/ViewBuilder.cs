@@ -27,7 +27,7 @@ namespace AnkiCopyBase.Views
         public void BuildText() =>
             Console.Write(_viewText.ToString());
 
-        public void AddText(string? text) => 
+        public void AddText(string? text) =>
             _viewText.Append(text);
 
         public void AddLine(string? text) =>
@@ -52,7 +52,7 @@ namespace AnkiCopyBase.Views
                 Console.Write(_viewText.ToString());
                 input = Console.ReadLine();
 
-                if(int.TryParse(input, out chosenOption))
+                if (int.TryParse(input, out chosenOption))
                     if (chosenOption >= 0 && chosenOption <= _optionsCount)
                         isInputAnOption = true;
 
