@@ -17,7 +17,7 @@
   <Class Name="AnkiCopyBase.Models.Deck" BaseTypeListCollapsed="true">
     <Position X="0.5" Y="0.5" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAAAIAAAAAAAABAAAAAAAAQIAAAAAAAEAAAAAAAAEAA=</HashCode>
+      <HashCode>AAAAIAAAAAAAABAAAAAAAAQIAAAAAAAEAQAAAAAAEAA=</HashCode>
       <FileName>Models\Deck.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.1" Collapsed="true" />
@@ -39,7 +39,7 @@
   <Class Name="AnkiCopyBase.Views.DeckCreation">
     <Position X="6.75" Y="0.5" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAACAAAAAAAAAEIAAAAAAAAAAAAAABAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAACAAAAAAAAAQIAAAAAAAAAAAAAABAAAAAAAAAAAA=</HashCode>
       <FileName>Views\DeckCreation.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -57,18 +57,18 @@
       <FileName>Views\Menu.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="AnkiCopyBase.Views.UserLogin">
-    <Position X="6.75" Y="5.25" Width="2" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAACAAAAAAAAAABAAAAAAAQAAAEAAA=</HashCode>
-      <FileName>Views\UserLogin.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="AnkiCopyBase.Views.ViewBuilder">
     <Position X="6.75" Y="7.25" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAgBAAAAAAAAABAJIAACBAABQAAEAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Views\ViewBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnkiCopyBase.Views.LoginOrRegister">
+    <Position X="6.75" Y="5.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAQAAAEAAA=</HashCode>
+      <FileName>Views\LoginOrRegister.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
