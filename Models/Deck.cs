@@ -8,7 +8,7 @@ namespace AnkiCopyBase.Models
     public class Deck : IEnumerable<Card>
     {
         public string Name;
-        public List<Card> Cards;
+        private List<Card> Cards;
 
         public Deck()
         {
@@ -20,6 +20,11 @@ namespace AnkiCopyBase.Models
         {
             Name = name;
             Cards = new List<Card>();
+        }
+
+        public void AddCard(Card card)
+        {
+            Cards.Add(card);
         }
 
         public static Deck? TryCreateDeck(string? name)
