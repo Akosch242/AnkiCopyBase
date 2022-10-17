@@ -35,6 +35,9 @@ namespace AnkiCopyBase.Controllers
             List<Deck> decks = UserManager.LoadDecks();
             int choosen = Learn.ShowDeckList(decks);
 
+            if (choosen == 0)
+                return;
+
             Learn.ShowDeck(decks[choosen - 1].Shuffle());
         }
 
