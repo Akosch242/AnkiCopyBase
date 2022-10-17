@@ -17,16 +17,11 @@ namespace AnkiCopyBase.Views
         {
             ViewBuilder view = new ViewBuilder();
 
-            //while (true)
-            //{
             view.ClearFull();
             view.AddText($"Deckname{decknameRules}: ");
             view.BuildText();
+
             return view.GetText();
-                /*if (!string.IsNullOrEmpty(temp))
-                    return temp;
-                view.ClearText();*/
-            //}
         }
 
         public static Card CardCreation()
@@ -73,7 +68,7 @@ namespace AnkiCopyBase.Views
             return card;
         }
 
-        public static bool ContinueDeckCreation()
+        public static bool ContinueAddingCards()
         {
             ViewBuilder view = new ViewBuilder();
             view.AddLine("Do you want to continue adding cards?");

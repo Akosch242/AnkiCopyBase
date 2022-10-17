@@ -98,7 +98,7 @@ namespace AnkiCopyBase.Controllers
             do
             {
                 deck.Cards.Add(DeckCreation.CardCreation());
-            } while (DeckCreation.ContinueDeckCreation());
+            } while (DeckCreation.ContinueAddingCards());
 
             UserManager.SaveDeck(deck);
         }
