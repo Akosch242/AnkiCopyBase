@@ -84,15 +84,19 @@ namespace AnkiCopyBase.Models
 
             foreach (string file in Directory.EnumerateFiles($@".\{_name}", "*.txt"))
             {
-                Deck deck = new Deck();
-
-                deck.Name = Path.GetFileNameWithoutExtension(file);
+                Deck deck = new Deck(Path.GetFileNameWithoutExtension(file));
 
                 string json = File.ReadAllText(file);
                 var options = new JsonSerializerOptions { WriteIndented = true };
                 List<Card>? cards = JsonSerializer.Deserialize<List<Card>>(json, options);
-                if (cards == null) cards = new List<Card>();
-                deck.Cards = cards;
+                
+                if (cards == null)
+                    cards = new List<Card>();
+
+                foreach (Card card in cards)
+                {
+                    deck.AddCard(card);
+                }
 
                 if (deck == null || string.IsNullOrEmpty(deck.Name))
                     continue;

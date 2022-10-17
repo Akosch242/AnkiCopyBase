@@ -7,7 +7,7 @@ namespace AnkiCopyBase.Models
 
     public class Deck : IEnumerable<Card>
     {
-        public string Name;
+        public readonly string Name;
         private List<Card> Cards;
 
         public Deck()
