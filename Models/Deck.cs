@@ -22,10 +22,8 @@ namespace AnkiCopyBase.Models
             Cards = new List<Card>();
         }
 
-        public void AddCard(Card card)
-        {
+        public void AddCard(Card card) =>
             Cards.Add(card);
-        }
 
         public static Deck? TryCreateDeck(string? name)
         {
