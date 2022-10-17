@@ -2,7 +2,7 @@
 
 namespace AnkiCopyBase.Views
 {
-    public class Learn
+    public static class Learn
     {
         public static int ShowDeckList(List<Deck> decks)
         {

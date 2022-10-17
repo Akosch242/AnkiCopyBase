@@ -21,20 +21,8 @@ namespace AnkiCopyBase.Views
             _optionsCount = 0;
         }
 
-        public void ClearWindow() =>
-            Console.Clear();
-
-        public void ClearTextAndOptions()
-        {
-            _viewText.Clear();
-            _optionsCount = 0;
-        }
-
         public void ClearText() =>
             _viewText.Clear();
-
-        public static void SendErrorMsg(string text) =>
-            Console.WriteLine(text);
 
         public void BuildText() =>
             Console.Write(_viewText.ToString());

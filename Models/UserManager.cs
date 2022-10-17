@@ -5,12 +5,6 @@ namespace AnkiCopyBase.Models
 {
     public record struct UserData(string? Name, string? Password);
 
-    public enum LoginResult
-    {
-        UserNotFound,
-        Success
-    }
-
     public static class UserManager
     {
         private const string UserDataFile = @".\users.txt";

@@ -2,7 +2,7 @@
 
 namespace AnkiCopyBase.Views
 {
-    public class DeckCreation
+    public static class DeckCreation
     {
         public static bool Continue()
         {
