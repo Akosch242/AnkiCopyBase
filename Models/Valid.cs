@@ -6,7 +6,7 @@ namespace AnkiCopyBase.Models
     {
         //Update string when changing conditions
         public static readonly string usernameDescription =
-            "(Not null or empty, length between 4 and 16, consists of letters or digits!)";
+            "(Length between 4 and 16, only letters and digits!)";
         public static bool Username([NotNullWhen(true)] string? name)
         {
             if (string.IsNullOrEmpty(name))
@@ -23,7 +23,7 @@ namespace AnkiCopyBase.Models
 
         //Update string when changing conditions
         public static readonly string passwordDescription =
-            "(Not null or empty, longer than 4!)";
+            "(Longer than 4!)";
         public static bool Password([NotNullWhen(true)] string? password)
         {
             if (string.IsNullOrEmpty(password))
@@ -48,7 +48,7 @@ namespace AnkiCopyBase.Models
 
         //Update string when changing conditions
         public static readonly string decknameDescription =
-            "(Not null or empty, length should be between 4 and 16, letters, digits and spaces!)";
+            "(Length between 4 and 16, only letters, digits and spaces!)";
         public static bool DeckName([NotNullWhen(true)] string? name)
         {
             if (string.IsNullOrEmpty(name))

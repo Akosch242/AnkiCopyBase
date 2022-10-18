@@ -6,9 +6,9 @@ namespace AnkiCopyBase
     {
         static void Main(string[] args)
         {
-            AnkiCopyController myApp = new AnkiCopyController();
+            AnkiCopy myApp = new AnkiCopy();
 
-            myApp.StartAnkiCopy();
+            myApp.Start();
         }
     }
 }

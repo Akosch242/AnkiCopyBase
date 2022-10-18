@@ -25,7 +25,7 @@ namespace AnkiCopyBase.Models
         public void AddCard(Card card) =>
             Cards.Add(card);
 
-        public static Deck? TryCreateDeck(string? name)
+        public static Deck? TryCreate(string? name)
         {
             return Valid.DeckName(name) ? new Deck(name) : null;
         }
@@ -36,8 +36,8 @@ namespace AnkiCopyBase.Models
                 return this;
 
             Card[] cards = Cards.ToArray();
-            Card temp;
             int n = cards.Length;
+            Card temp;
             Random rng = new Random();
 
             while (n > 1)

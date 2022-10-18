@@ -9,52 +9,52 @@ namespace AnkiCopyBase.Views
             if (decks == null)
                 return 0;
 
-            ViewBuilder view = new ViewBuilder();
+            MenuBuilder menu = new MenuBuilder();
 
-            view.AddLine("Your decks:");
+            menu.AddLine("Your decks:");
             foreach (Deck deck in decks)
             {
-                view.AddOption($"{deck.Name}");
+                menu.AddOption($"{deck.Name}");
             }
-            return view.BuildMenu();
+            
+            return menu.BuildMenu();
         }
 
         public static void ShowDeck(Deck deck)
         {
-            ViewBuilder view = new ViewBuilder();
+            MenuBuilder menu = new MenuBuilder();
 
             foreach (Card card in deck)
             {
-                int choosen = 0;
-                bool isBackHidden = true;
-                bool isHintHidden = true;
+                int choosen;
+                bool backHidden = true;
+                bool hintHidden = true;
                 do
                 {
-                    view.ClearFull();
-                    view.AddLine($"Currently training {deck.Name} deck:");
-                    view.AddLine(card.front);
-                    view.AddOption("Next card");
+                    menu.AddLine($"Currently training {deck.Name} deck:");
+                    menu.AddLine(card.front);
+                    menu.AddOption("Next card");
 
-                    if (isBackHidden)
-                        view.AddOption("Show back");
+                    if (backHidden)
+                        menu.AddOption("Show back");
                     else
-                        view.AddLine($"Back: {card.back}");
+                        menu.AddLine($"Back: {card.back}");
 
-                    if (isHintHidden && isBackHidden)
-                        view.AddOption("Show hint");
-                    else if (isHintHidden && !isBackHidden)
-                        view.AddLine("");
+                    if (hintHidden && backHidden)
+                        menu.AddOption("Show hint");
+                    else if (hintHidden && !backHidden)
+                        menu.AddLine("");
                     else
-                        view.AddLine($"Hint: {card.hint}");
+                        menu.AddLine($"Hint: {card.hint}");
 
-                    choosen = view.BuildMenu();
+                    choosen = menu.BuildMenu();
 
                     if (choosen == 1)
                         break;
                     else if (choosen == 2)
-                        isBackHidden = false;
+                        backHidden = false;
                     else if (choosen == 3)
-                        isHintHidden = false;
+                        hintHidden = false;
                     else
                         return;
 

@@ -4,34 +4,28 @@ namespace AnkiCopyBase.Views
 {
     public static class LoginOrRegister
     {
-        public static int Entry()
+        public static int Choose()
         {
-            ViewBuilder view = new ViewBuilder();
+            MenuBuilder menu = new MenuBuilder();
 
-            view.ClearFull();
-            view.AddLine("Welcome to AnkiCopy, please register or login!");
-            view.AddOption("Register");
-            view.AddOption("Login");
-            return view.BuildMenu();
+            menu.AddLine("Welcome to AnkiCopy, please register or login!");
+            menu.AddOption("Register");
+            menu.AddOption("Login");
+
+            return menu.BuildMenu();
         }
 
         public static UserData Login(string usernameRules, string passwordRules)
         {
             UserData user = new UserData();
-            ViewBuilder view = new ViewBuilder();
 
-            view.ClearFull();
-            view.AddLine("Log into your account:");
+            Console.WriteLine("Log into your account:");
 
-            view.AddText($"Username{usernameRules}: ");
-            view.BuildText();
-            user.Name = view.GetText();
-            view.ClearText();
+            Console.Write($"Username{usernameRules}: ");
+            user.Name = Console.ReadLine();
 
-            view.AddText($"Password{passwordRules}: ");
-            view.BuildText();
-            user.Password = view.GetText();
-            view.ClearText();
+            Console.Write($"Password{passwordRules}: ");
+            user.Password = Console.ReadLine();
 
             return user;
         }
@@ -39,32 +33,26 @@ namespace AnkiCopyBase.Views
         public static UserData Register(string usernameRules, string passwordRules)
         {
             UserData user = new UserData();
-            ViewBuilder view = new ViewBuilder();
 
-            view.ClearFull();
-            view.AddLine("Create an account:");
+            Console.WriteLine("Create an account:");
 
-            view.AddText($"Username{usernameRules}: ");
-            view.BuildText();
-            user.Name = view.GetText();
-            view.ClearText();
+            Console.Write($"Username{usernameRules}: ");
+            user.Name = Console.ReadLine();
 
-            view.AddText($"Password{passwordRules}: ");
-            view.BuildText();
-            user.Password = view.GetText();
-            view.ClearText();
+            Console.Write($"Password{passwordRules}: ");
+            user.Password = Console.ReadLine();
 
             return user;
         }
 
-        public static bool AskRetry()
+        public static bool Retry()
         {
-            ViewBuilder view = new ViewBuilder();
+            MenuBuilder menu = new MenuBuilder();
 
-            view.AddLine("Unsuccessful, do you want to retry?");
-            view.AddOption("Retry");
+            menu.AddLine("Unsuccessful, do you want to retry?");
+            menu.AddOption("Retry");
 
-            return view.BuildMenu() == 1 ? true : false;
+            return menu.BuildMenu() == 1 ? true : false;
         }
     }
 }

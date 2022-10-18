@@ -2,49 +2,29 @@
 
 namespace AnkiCopyBase.Views
 {
-    public class ViewBuilder
+    public class MenuBuilder
     {
-        private const int _closeOrReturn = 0;
         private StringBuilder _viewText;
         private int _optionsCount;
 
-        public ViewBuilder()
+        public MenuBuilder()
         {
             _viewText = new StringBuilder();
             _optionsCount = 0;
         }
 
-        public void ClearFull()
-        {
-            Console.Clear();
-            _viewText.Clear();
-            _optionsCount = 0;
-        }
-
-        public void ClearText() =>
-            _viewText.Clear();
-
-        public void BuildText() =>
-            Console.Write(_viewText.ToString());
-
-        public void AddText(string? text) =>
-            _viewText.Append(text);
-
-        public void AddLine(string? text) =>
+        public void AddLine(string text) =>
             _viewText.AppendLine(text);
 
         public void AddOption(string text) =>
             _viewText.AppendLine($"{++_optionsCount}. {text}");
 
-        public string? GetText() =>
-            Console.ReadLine();
-
         public int BuildMenu()
         {
             string? input;
             bool isInputAnOption = false;
-            int chosenOption = 0;
-            _viewText.AppendLine($"Press {_closeOrReturn} to close/return.");
+            int chosenOption;
+            _viewText.AppendLine($"Press 0 to close/return.");
 
             do
             {
@@ -57,6 +37,10 @@ namespace AnkiCopyBase.Views
                         isInputAnOption = true;
 
             } while (!isInputAnOption);
+
+            _viewText.Clear();
+            _optionsCount = 0;
+            Console.Clear();
 
             return chosenOption;
         }

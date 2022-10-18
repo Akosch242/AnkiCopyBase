@@ -3,19 +3,19 @@ using AnkiCopyBase.Views;
 
 namespace AnkiCopyBase.Controllers
 {
-    public class AnkiCopyController
+    public class AnkiCopy
     {
-        public void StartAnkiCopy()
+        public void Start()
         {
             if (!LoginProcess())
                 return;
 
             while (true)
             {
-                switch (Menu.ShowMain(UserManager.GetName()))
+                switch (Options.Show(UserManager.GetName()))
                 {
                     case 1:
-                        DeckCreationProcess();
+                        CreationProcess();
                         break;
                     case 2:
                         TrainingProcess();
@@ -44,10 +44,9 @@ namespace AnkiCopyBase.Controllers
 
         private bool LoginProcess()
         {
-            int choosen = 0;
             do
             {
-                choosen = LoginOrRegister.Entry();
+                int choosen = LoginOrRegister.Choose();
                 UserData user;
 
                 if (choosen == 1)
@@ -56,7 +55,7 @@ namespace AnkiCopyBase.Controllers
 
                     while (!UserManager.TryRegister(user))
                     {
-                        if (!LoginOrRegister.AskRetry())
+                        if (!LoginOrRegister.Retry())
                             break;
 
                         user = LoginOrRegister.Register(Valid.usernameDescription, Valid.passwordDescription);
@@ -68,7 +67,7 @@ namespace AnkiCopyBase.Controllers
 
                     while (!UserManager.TryLogin(user))
                     {
-                        if (!LoginOrRegister.AskRetry())
+                        if (!LoginOrRegister.Retry())
                             break;
 
                         user = LoginOrRegister.Login(Valid.usernameDescription, Valid.passwordDescription);
@@ -84,21 +83,23 @@ namespace AnkiCopyBase.Controllers
             return true;
         }
 
-        private void DeckCreationProcess()
+        private void CreationProcess()
         {
-            if (!DeckCreation.Continue())
+            if (!Creat.Continue())
                 return;
 
             Deck? deck = null;
             while (deck == null)
             {
-                deck = Deck.TryCreateDeck(DeckCreation.DeckName(Valid.decknameDescription));
+                string? name = Creat.Deck(Valid.decknameDescription);
+                deck = Deck.TryCreate(name);
             }
 
             do
             {
-                deck.AddCard(DeckCreation.CardCreation());
-            } while (DeckCreation.ContinueAddingCards());
+                Card created = Creat.Card();
+                deck.AddCard(created);
+            } while (Creat.ContinueAddingCards());
 
             UserManager.SaveDeck(deck);
         }
