@@ -7,33 +7,37 @@ namespace AnkiCopyBase.Controllers
     {
         public void Start()
         {
-            if (!LoginProcess())
+            User user = new User();
+            bool closeApp = false;
+
+            if (!LoginProcess(user))
                 return;
 
-            while (true)
+            while (!closeApp)
             {
-                switch (Options.Show(UserManager.GetName()))
+                switch (Options.Show(user.Name()))
                 {
                     case 1:
-                        CreationProcess();
+                        CreationProcess(user);
                         break;
                     case 2:
-                        TrainingProcess();
+                        TrainingProcess(user);
                         break;
                     case 3:
-                        if (!LoginProcess())
-                            return;
+                        if (!LoginProcess(user))
+                            closeApp = true;
                         break;
                     default:
-                        return;
+                        closeApp = true;
+                        break;
                 }
             }
         }
 
-        private void TrainingProcess()
+        private void TrainingProcess(User user)
         {
-            List<Deck> decks = UserManager.LoadDecks();
-            int choosen = Learn.ShowDeckList(decks);
+            List<Deck> decks = Database.LoadDecks(user);
+            int choosen = Learn.ShowDecks(decks);
 
             if (choosen == 0)
                 return;
@@ -42,35 +46,35 @@ namespace AnkiCopyBase.Controllers
             Learn.ShowDeck(decks[choosen - 1].Shuffle());
         }
 
-        private bool LoginProcess()
+        private bool LoginProcess(User user)
         {
             do
             {
                 int choosen = LoginOrRegister.Choose();
-                UserData user;
+                UserData userData;
 
                 if (choosen == 1)
                 {
-                    user = LoginOrRegister.Register(Valid.usernameDescription, Valid.passwordDescription);
+                    userData = LoginOrRegister.Register(Valid.usernameDescription, Valid.passwordDescription);
 
-                    while (!UserManager.TryRegister(user))
+                    while (!user.TryRegister(userData))
                     {
-                        if (!LoginOrRegister.Retry())
+                        if (!LoginOrRegister.WantsToRetry())
                             break;
 
-                        user = LoginOrRegister.Register(Valid.usernameDescription, Valid.passwordDescription);
+                        userData = LoginOrRegister.Register(Valid.usernameDescription, Valid.passwordDescription);
                     }
                 }
                 else if (choosen == 2)
                 {
-                    user = LoginOrRegister.Login(Valid.usernameDescription, Valid.passwordDescription);
+                    userData = LoginOrRegister.Login(Valid.usernameDescription, Valid.passwordDescription);
 
-                    while (!UserManager.TryLogin(user))
+                    while (!user.TryLogin(userData))
                     {
-                        if (!LoginOrRegister.Retry())
+                        if (!LoginOrRegister.WantsToRetry())
                             break;
 
-                        user = LoginOrRegister.Login(Valid.usernameDescription, Valid.passwordDescription);
+                        userData = LoginOrRegister.Login(Valid.usernameDescription, Valid.passwordDescription);
                     }
                 }
                 else
@@ -78,30 +82,30 @@ namespace AnkiCopyBase.Controllers
                     return false;
                 }
 
-            } while (UserManager.GetName() == null);
+            } while (!user.LoggedIn());
 
             return true;
         }
 
-        private void CreationProcess()
+        private void CreationProcess(User user)
         {
-            if (!Creat.Continue())
+            if (!Create.Continue())
                 return;
 
             Deck? deck = null;
             while (deck == null)
             {
-                string? name = Creat.Deck(Valid.decknameDescription);
+                string? name = Create.Deck(Valid.decknameDescription);
                 deck = Deck.TryCreate(name);
             }
 
             do
             {
-                Card created = Creat.Card();
+                Card created = Create.Card();
                 deck.AddCard(created);
-            } while (Creat.ContinueAddingCards());
+            } while (Create.ContinueAddingCards());
 
-            UserManager.SaveDeck(deck);
+            Database.SaveDeck(user, deck);
         }
     }
 }

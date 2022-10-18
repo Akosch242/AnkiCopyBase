@@ -4,7 +4,7 @@ namespace AnkiCopyBase.Views
 {
     public static class Learn
     {
-        public static int ShowDeckList(List<Deck> decks)
+        public static int ShowDecks(List<Deck> decks)
         {
             if (decks == null)
                 return 0;
@@ -32,20 +32,20 @@ namespace AnkiCopyBase.Views
                 do
                 {
                     menu.AddLine($"Currently training {deck.Name} deck:");
-                    menu.AddLine(card.front);
+                    menu.AddLine(card.Front);
                     menu.AddOption("Next card");
 
                     if (backHidden)
                         menu.AddOption("Show back");
                     else
-                        menu.AddLine($"Back: {card.back}");
+                        menu.AddLine($"Back: {card.Back}");
 
                     if (hintHidden && backHidden)
                         menu.AddOption("Show hint");
                     else if (hintHidden && !backHidden)
                         menu.AddLine("");
                     else
-                        menu.AddLine($"Hint: {card.hint}");
+                        menu.AddLine($"Hint: {card.Hint}");
 
                     choosen = menu.BuildMenu();
 

@@ -3,18 +3,10 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace AnkiCopyBase.Models
 {
-    public record struct Card(string front, string back, string? hint = null);
-
     public class Deck : IEnumerable<Card>
     {
         public readonly string Name;
         private List<Card> Cards;
-
-        public Deck()
-        {
-            Name = "";
-            Cards = new List<Card>();
-        }
 
         public Deck(string name)
         {

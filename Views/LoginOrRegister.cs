@@ -17,35 +17,35 @@ namespace AnkiCopyBase.Views
 
         public static UserData Login(string usernameRules, string passwordRules)
         {
-            UserData user = new UserData();
+            UserData userData; 
 
             Console.WriteLine("Log into your account:");
 
             Console.Write($"Username{usernameRules}: ");
-            user.Name = Console.ReadLine();
+            userData.Name = Console.ReadLine();
 
             Console.Write($"Password{passwordRules}: ");
-            user.Password = Console.ReadLine();
+            userData.Password = Console.ReadLine();
 
-            return user;
+            return userData;
         }
 
         public static UserData Register(string usernameRules, string passwordRules)
         {
-            UserData user = new UserData();
+            UserData userData;
 
             Console.WriteLine("Create an account:");
 
             Console.Write($"Username{usernameRules}: ");
-            user.Name = Console.ReadLine();
+            userData.Name = Console.ReadLine();
 
             Console.Write($"Password{passwordRules}: ");
-            user.Password = Console.ReadLine();
+            userData.Password = Console.ReadLine();
 
-            return user;
+            return userData;
         }
 
-        public static bool Retry()
+        public static bool WantsToRetry()
         {
             MenuBuilder menu = new MenuBuilder();
 

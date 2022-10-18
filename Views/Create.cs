@@ -2,7 +2,7 @@
 
 namespace AnkiCopyBase.Views
 {
-    public static class Creat
+    public static class Create
     {
         public static bool Continue()
         {
@@ -46,7 +46,7 @@ namespace AnkiCopyBase.Views
                 input = Console.ReadLine();
                 if (!string.IsNullOrEmpty(input))
                 {
-                    card.front = input;
+                    card.Front = input;
                     frontNullOrEmpty = false;
                 }
             }
@@ -57,14 +57,14 @@ namespace AnkiCopyBase.Views
                 input = Console.ReadLine();
                 if (!string.IsNullOrEmpty(input))
                 {
-                    card.back = input;
+                    card.Back = input;
                     backNullOrEmpty = false;
                 }
             }
 
             Console.Write("Hint: ");
             input = Console.ReadLine();
-            card.hint = input;
+            card.Hint = input;
 
             return card;
         }
