@@ -8,10 +8,14 @@ namespace AnkiCopyBase.Models
         public readonly string Name;
         private List<Card> Cards;
 
-        public Deck(string name)
+        public Deck(string name, List<Card>? cards = null)
         {
             Name = name;
-            Cards = new List<Card>();
+
+            if (cards == null)
+                Cards = new List<Card>();
+            else
+                Cards = cards;
         }
 
         public void AddCard(Card card) =>

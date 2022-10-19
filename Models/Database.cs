@@ -70,20 +70,11 @@ namespace AnkiCopyBase.Models
 
             foreach (string file in Directory.EnumerateFiles($@".\{user.Name()}", "*.json"))
             {
-                Deck deck = new Deck(Path.GetFileNameWithoutExtension(file));
-
+                string name = Path.GetFileNameWithoutExtension(file);
                 string json = File.ReadAllText(file);
                 List<Card>? cards = JsonSerializer.Deserialize<List<Card>>(json);
-                
-                if (cards == null)
-                    cards = new List<Card>();
 
-                foreach (Card card in cards)
-                {
-                    deck.AddCard(card);
-                }
-
-                decks.Add(deck);
+                decks.Add(new Deck(name, cards));
             }
 
             return decks;
