@@ -1,4 +1,4 @@
-# AnkiCopyBase
+# FlashcardConsoleApp
 ## About
 This is a small flashcard learning app, with login/register for easier organizing in case more people use your pc.
 ## Usage
