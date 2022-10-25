@@ -15,7 +15,7 @@ namespace AnkiCopyBase.Controllers
 
             while (!closeApp)
             {
-                switch (Options.Show(user.Name()))
+                switch (Options.Show(user.Name))
                 {
                     case 1:
                         CreationProcess(user);
@@ -82,7 +82,7 @@ namespace AnkiCopyBase.Controllers
                     return false;
                 }
 
-            } while (!user.LoggedIn());
+            } while (!user.IsLoggedIn);
 
             return true;
         }

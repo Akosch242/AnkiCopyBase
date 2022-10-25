@@ -7,8 +7,16 @@ namespace AnkiCopyBase.Models
         private string _name = "";
         private bool _loggedIn;
 
-        public bool LoggedIn() => _loggedIn;
-        public string Name() => _name;
+        public bool IsLoggedIn
+        {
+            get { return _loggedIn; }
+        }
+
+        public string Name
+        {
+            get { return _name; }
+        }
+
 
         public bool TryRegister(UserData userData)
         {

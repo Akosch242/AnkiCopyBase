@@ -5,12 +5,18 @@ namespace AnkiCopyBase.Models
 {
     public class Deck : IEnumerable<Card>
     {
-        public readonly string Name;
+        private string _name;
+
+        public string Name
+        {
+            get { return _name; }
+        }
+
         private List<Card> Cards;
 
         public Deck(string name, List<Card>? cards = null)
         {
-            Name = name;
+            _name = name;
 
             if (cards == null)
                 Cards = new List<Card>();

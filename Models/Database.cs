@@ -52,11 +52,11 @@ namespace AnkiCopyBase.Models
 
         public static bool SaveDeck(User user, Deck deck)
         {
-            if (File.Exists($@".\{user.Name()}\{deck.Name}.json"))
+            if (File.Exists($@".\{user.Name}\{deck.Name}.json"))
                 return false;
 
             string json = JsonSerializer.Serialize(deck);
-            File.AppendAllText($@".\{user.Name()}\{deck.Name}.json", json);
+            File.AppendAllText($@".\{user.Name}\{deck.Name}.json", json);
 
             return true;
         }
@@ -65,10 +65,10 @@ namespace AnkiCopyBase.Models
         {
             List<Deck> decks = new List<Deck>();
 
-            if (!Directory.Exists($@".\{user.Name()}"))
+            if (!Directory.Exists($@".\{user.Name}"))
                 throw new Exception();
 
-            foreach (string file in Directory.EnumerateFiles($@".\{user.Name()}", "*.json"))
+            foreach (string file in Directory.EnumerateFiles($@".\{user.Name}", "*.json"))
             {
                 string name = Path.GetFileNameWithoutExtension(file);
                 string json = File.ReadAllText(file);
